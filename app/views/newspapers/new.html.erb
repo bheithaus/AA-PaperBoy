@@ -1,0 +1,12 @@
+<h1>Create a Newspaper</h1>
+<%= form_for(@newspaper) do |f| %>
+  <%= render partial: "shared/errors", object: @newspaper.errors %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :editor %>
+  <%= f.text_field :editor %>
+
+  <%= f.submit class: 'btn' %>
+<% end %>
