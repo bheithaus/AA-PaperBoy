@@ -1,10 +1,14 @@
 class Newspaper < ActiveRecord::Base
-  attr_accessible :editor, :title, :subscription_plans_attributes
+  attr_accessible :avatar, :editor, :title, :subscription_plans_attributes
 
   has_many :subscription_plans, inverse_of: :newspaper, dependent: :destroy
   accepts_nested_attributes_for :subscription_plans, reject_if: :reject_plan
 
   has_many :users, through: :subscription_plans
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" },
+  ## https://github.com/thoughtbot/paperclip
+
 
   validates :editor, :title, presence: true
   # maybe also check that they are only word characters?
