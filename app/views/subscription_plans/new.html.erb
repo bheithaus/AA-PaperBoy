@@ -1,0 +1,9 @@
+<h2>Add A Subscription Plan to <%= @title %></h2>
+<%= render partial: 'shared/errors', object: @subscription_plan.errors %>
+
+<%= form_for(@subscription_plan) do |f| %>
+  <%= render partial: 'shared/plan_form', object: f %>
+
+  <%= f.hidden_field :newspaper_id %>
+  <%= f.submit %>
+<% end %>

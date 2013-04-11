@@ -1,12 +1,25 @@
 <h1>Create a Newspaper</h1>
 <%= form_for(@newspaper) do |f| %>
-  <%= render partial: "shared/errors", object: @newspaper.errors %>
 
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+  <div class="container">
+    <%= render partial: "shared/errors", object: @newspaper.errors %>
+  </div>
+  <br>
+  <div class="container">
+    <div class="span4">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
 
-  <%= f.label :editor %>
-  <%= f.text_field :editor %>
+      <%= f.label :editor %>
+      <%= f.text_field :editor %>
+    </div>
 
-  <%= f.submit class: 'btn' %>
+    <%= f.submit class: 'btn' %>
+  </div>
+  <br>
+      <% unless @newspaper.subscription_plans.empty? %>
+        <%= render partial: "shared/plans_form", locals: { f: f } %>
+      <% end %>
+  <br>
+
 <% end %>

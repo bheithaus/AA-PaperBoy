@@ -1,0 +1,20 @@
+<td>
+  $<%= number_with_precision(plan.price, :precision => 2) %>
+</td>
+<td>
+  <% if plan.daily %>
+    Daily
+  <% else %>
+    Weekly
+  <% end %>
+</td>
+<% signup ||= false %>
+<% if signup == 'checkbox' %>
+  <td>
+  <%= check_box_tag(
+                    'user[subscription_plan_ids][]',
+                    plan.id,
+                    @user.subscription_plan_ids.include?(plan.id)
+                    ) %>
+  </td>
+<% end %>

@@ -1,0 +1,15 @@
+<h1>Sign up</h1>
+<%= form_for(@user) do |f| %>
+
+<div class="container">
+  <%= render partial: "shared/errors", object: @user.errors %>
+</div>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <br>
+
+  <%= render partial: 'newspapers/newspapers', object: @newspapers, locals: { signup: 'select' } %>
+
+  <%= f.submit class: 'btn' %>
+<% end %>

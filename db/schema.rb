@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410161333) do
+ActiveRecord::Schema.define(:version => 20130410235911) do
 
   create_table "newspapers", :force => true do |t|
     t.string   "title"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20130410161333) do
     t.datetime "updated_at",   :null => false
   end
 
+  add_index "subscription_plans", ["daily"], :name => "index_subscription_plans_on_daily"
   add_index "subscription_plans", ["newspaper_id"], :name => "index_subscription_plans_on_newspaper_id"
 
   create_table "subscriptions", :force => true do |t|

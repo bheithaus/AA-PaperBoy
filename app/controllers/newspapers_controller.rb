@@ -1,6 +1,13 @@
 class NewspapersController < ApplicationController
+  def index
+    @newspapers = Newspaper.all
+  end
+
   def new
     @newspaper = Newspaper.new
+    2.times do
+      @newspaper.subscription_plans.build
+    end
   end
 
   def create

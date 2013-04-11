@@ -1,0 +1,4 @@
+<% signup ||= false %>
+<% newspapers.each do |newspaper| %>
+  <%= render partial: 'newspapers/newspaper', object: newspaper, locals: { signup: signup } %>
+<% end %>

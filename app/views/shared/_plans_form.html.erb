@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <div class="container">
+      <h4>Subscription Plans</h4>
+
+        <%= f.fields_for(:subscription_plans) do |plan_form| %>
+          <td>
+            <%= render partial: "shared/plan_form", object: plan_form %>
+          </td>
+        <% end %>
+    </div>
+  </tr>
+</table>

@@ -1,0 +1,15 @@
+<h5>Plan</h5>
+
+<div class="input-prepend">
+  <%#= sf.label :price %>
+  <span class="add-on">$</span>
+  <%= plan_form.select :price, [5,10,15,20], id: "prependedInput" %>
+</div>
+
+<div class="span4">
+  <%= plan_form.label :daily, "Daily", class: "radio inline" %>
+  <%= plan_form.radio_button :daily, true %>
+
+  <%= plan_form.label :daily, "Weekly", class: "radio inline" %>
+  <%= plan_form.radio_button :daily, false %>
+</div>
