@@ -2,30 +2,36 @@
 <h3>Newspaper: <%= newspaper.title %></h3>
 <br>
 <h4>Available Subscription Plans</h4>
-<table class="table">
-  <tr>
-    <th>
-      Price per Month
-    </th>
-    <th>
-      Delivery Schedule
-    </th>
-    <% if signup %><th></th><% end %>
-  </tr>
-
-  <% options = [] %>
-  <% newspaper.subscription_plans.each do |plan| %>
+<table class="table table-hover table">
+  <thead>
     <tr>
-      <%= render partial: "shared/plan", object: plan, locals: { signup: signup } %>
+      <th>
+        Price per Month
+      </th>
+      <th>
+        Delivery Schedule
+      </th>
+      <% if signup %><th></th><% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% options = [['', nil]] %>
+    <% selected = nil %>
+    <% newspaper.subscription_plans.each do |plan| %>
+      <tr>
+        <%= render partial: "shared/plan", object: plan, locals: { signup: signup } %>
+        <% if signup == 'select' %>
+          <% delivery = plan.daily ? 'Daily' : 'Weekly' %>
+          <% options << [delivery, plan.id] %>
+          <% selected = plan.id if @user.subscription_plan_ids.include?(plan.id) %>
+        <% end %>
+      </tr>
+    <% end %>
+    <tr>
       <% if signup == 'select' %>
-        <% delivery = plan.daily ? 'Daily' : 'Weekly' %>
-        <% options << [delivery, plan.id] %>
+        <%= select_tag('user[subscription_plan_ids][]', options_for_select(options, selected)) %>
       <% end %>
     </tr>
-  <% end %>
-  <tr>
-    <% if signup == 'select' %>
-      <%= select_tag('user[subscription_plan_ids][]', options_for_select(options)) %>
-    <% end %>
-  </tr>
+  </tbody>
 </table>
